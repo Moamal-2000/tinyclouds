@@ -2,7 +2,7 @@ export default function Layout(
   { title, background, children }: {
     title?: string;
     background?: string;
-    children: React.ReactNode;
+    children: unknown;
   },
 ) {
   return (
@@ -267,6 +267,16 @@ export default function Layout(
 
             body.dark .content code {
               background-color: #1a1a1a;
+            }
+
+            .content.hidden-links a {
+              color: inherit;
+              text-decoration: underline;
+              text-decoration-color: color-mix(in srgb, currentColor 20%, transparent);
+            }
+
+            .content.hidden-links a:hover {
+              opacity: 0.7;
             }
 
             @media (max-width: 640px) {

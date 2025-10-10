@@ -1,11 +1,12 @@
 export const layout = "layout.tsx";
 
 export default function Post(
-  { title, publish_date, cover_html, children }: {
+  { title, publish_date, cover_html, post_class, children }: {
     title: string;
     publish_date: Date;
     cover_html?: string;
-    children: React.ReactNode;
+    post_class?: string;
+    children: unknown;
   },
 ) {
   const formattedDate = new Date(publish_date).toISOString().split("T")[0];
@@ -14,7 +15,9 @@ export default function Post(
     <>
       <div class="header">
         <a href="/" class="back-button">← Back</a>
-        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <button type="button" class="theme-toggle" onclick="toggleTheme()">
+          🌓
+        </button>
       </div>
 
       {cover_html && (
@@ -29,7 +32,7 @@ export default function Post(
         {formattedDate}
       </div>
 
-      <div class="content">
+      <div class={`content${post_class ? ` ${post_class}` : ""}`}>
         {children}
       </div>
     </>
